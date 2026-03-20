@@ -24,6 +24,12 @@ def update
   render json: employee, status: :ok
 end
 
+def destroy
+  employee = Employee.find(params[:id])
+  employee.destroy
+  head :no_content
+end
+
   private
 
   def employee_params

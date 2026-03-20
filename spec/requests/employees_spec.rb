@@ -71,6 +71,23 @@ describe "PATCH /employees/:id" do
     expect(json["job_title"]).to eq("Senior Backend Engineer")
   end
 end
+
+describe "DELETE /employees/:id" do
+  it "deletes an employee" do
+    employee = Employee.create!(
+      full_name: "Abhishek Anand",
+      job_title: "Backend Engineer",
+      country: "India",
+      salary: 50000
+    )
+
+    expect {
+      delete "/employees/#{employee.id}"
+    }.to change { Employee.count }.by(-1)
+
+    expect(response.status).to eq(204)
+  end
+end
 end
 
 
