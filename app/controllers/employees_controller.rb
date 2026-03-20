@@ -30,6 +30,13 @@ def destroy
   head :no_content
 end
 
+def salary
+  employee = Employee.find(params[:id])
+  result = SalaryCalculator.call(employee)
+
+  render json: result, status: :ok
+end
+
   private
 
   def employee_params
