@@ -18,6 +18,12 @@ def show
   render json: employee, status: :ok
 end
 
+def update
+  employee = Employee.find(params[:id])
+  employee.update!(employee_params)
+  render json: employee, status: :ok
+end
+
   private
 
   def employee_params

@@ -49,6 +49,28 @@ describe "GET /employees/:id" do
     expect(json["id"]).to eq(employee.id)
   end
 end
+
+describe "PATCH /employees/:id" do
+  it "updates an employee" do
+    employee = Employee.create!(
+      full_name: "Abhishek Anand",
+      job_title: "Backend Engineer",
+      country: "India",
+      salary: 50000
+    )
+
+    patch "/employees/#{employee.id}", params: {
+      employee: {
+        job_title: "Senior Backend Engineer"
+      }
+    }
+
+    expect(response.status).to eq(200)
+
+    json = JSON.parse(response.body)
+    expect(json["job_title"]).to eq("Senior Backend Engineer")
+  end
+end
 end
 
 
