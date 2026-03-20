@@ -87,6 +87,11 @@ describe "DELETE /employees/:id" do
 
     expect(response.status).to eq(204)
   end
+  it "returns 404 if employee not found" do
+  delete "/employees/999"
+
+  expect(response.status).to eq(404)
+end
 end
 end
 
