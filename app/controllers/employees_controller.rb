@@ -1,0 +1,21 @@
+# class EmployeesController < ApplicationController
+# end
+
+
+class EmployeesController < ApplicationController
+  def create
+    employee = Employee.create!(employee_params)
+    render json: employee, status: :created
+  end
+
+  def index
+  employees = Employee.all
+  render json: employees, status: :ok
+end
+
+  private
+
+  def employee_params
+    params.require(:employee).permit(:full_name, :job_title, :country, :salary)
+  end
+end
